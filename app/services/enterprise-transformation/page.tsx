@@ -4,13 +4,11 @@ import {
   faGears,
   faCloud,
   faLaptopCode,
-  faArrowRight,
   faRocket,
   faShieldAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import Container from "@/components/ui/Container";
-import Breadcrumb from "@/components/ui/Breadcrumb";
-import Link from "next/link";
+import ServicePageLayout from "@/components/ui/ServicePageLayout";
 
 export const metadata: Metadata = {
   title: "Enterprise Transformation | CBS",
@@ -78,32 +76,21 @@ const BENEFITS = [
 
 export default function EnterpriseTransformationPage() {
   return (
-    <main>
-      {/* Hero Section */}
-      <section className="relative py-20 bg-primary text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/pattern-grid.svg')] opacity-10" />
-        <Container className="relative z-10">
-          <Breadcrumb
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Products & Services", href: "/services" },
-              { label: "Enterprise Transformation" },
-            ]}
-          />
-
-          <div className="mt-8 max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Enterprise Transformation
-            </h1>
-            <p className="text-xl text-white/80">
-              Comprehensive digital transformation solutions to modernize your
-              business operations and drive sustainable growth.
-            </p>
-          </div>
-        </Container>
-      </section>
-
-      {/* Solutions Grid */}
+    <ServicePageLayout
+      breadcrumbItems={[
+        { label: "Home", href: "/" },
+        { label: "Products & Services", href: "/services" },
+        { label: "Enterprise Transformation" },
+      ]}
+      title="Enterprise Transformation"
+      description="Comprehensive digital transformation solutions to modernize your business operations and drive sustainable growth."
+      cta={{
+        title: "Ready to Transform Your Enterprise?",
+        description:
+          "Contact us to discuss how our enterprise transformation solutions can help modernize your business operations.",
+        buttonText: "Get Started",
+      }}
+    >
       <section className="py-20">
         <Container>
           <h2 className="text-3xl font-bold text-heading text-center mb-12">
@@ -139,7 +126,6 @@ export default function EnterpriseTransformationPage() {
         </Container>
       </section>
 
-      {/* Benefits Section */}
       <section className="py-20 bg-gray-50">
         <Container>
           <h2 className="text-3xl font-bold text-heading text-center mb-12">
@@ -166,27 +152,6 @@ export default function EnterpriseTransformationPage() {
           </div>
         </Container>
       </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-primary text-white">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6 text-white">
-              Ready to Transform Your Enterprise?
-            </h2>
-            <p className="text-white/80 mb-8">
-              Contact us to discuss how our enterprise transformation solutions
-              can help modernize your business operations.
-            </p>
-            <Link
-              href="/contact"
-              className="bg-white text-primary px-8 py-3 rounded-lg hover:bg-white/90 transition-colors inline-block"
-            >
-              Get Started
-            </Link>
-          </div>
-        </Container>
-      </section>
-    </main>
+    </ServicePageLayout>
   );
 }

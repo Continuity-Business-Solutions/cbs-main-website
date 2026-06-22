@@ -8,13 +8,15 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                primary: '#C8102E',    // Omani Red
-                secondary: '#007236',  // Omani Green
-                heading: '#0F172A',   // Dark blue for headings
-                body: '#1A2B4B',      // Main text color
-                muted: '#64748B',     // Secondary text color
+                primary: '#083c54',
+                'primary-dark': '#1c334a',
+                'primary-light': '#e5f0ff',
+                secondary: '#007236',
+                heading: '#0F172A',
+                body: '#1A2B4B',
+                muted: '#64748B',
                 border: '#E5E7EB',
-                'pattern': 'rgba(200, 16, 46, 0.05)',
+                pattern: 'rgba(8, 60, 84, 0.05)',
             },
             container: {
                 center: true,

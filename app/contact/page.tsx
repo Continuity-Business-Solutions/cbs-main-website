@@ -12,6 +12,7 @@ import dynamic from "next/dynamic";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import Image from "next/image";
 import Logo from "@/components/ui/Logo";
+import ContactFormPlaceholder from "@/components/contact/ContactFormPlaceholder";
 // Dynamically import Map component to prevent SSR issues with Google Maps
 const Map = dynamic(() => import("@/components/contact/Map"), {
   ssr: false,
@@ -175,64 +176,7 @@ export default function ContactPage() {
                   Send Us a Message
                 </h2>
               </div>
-              <form className="space-y-6">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-heading mb-2">
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#083c54] focus:border-[#0d7aad]"
-                      placeholder="Enter your full name"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-heading mb-2">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#083c54] focus:border-[#0d7aad]"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-heading mb-2">
-                    Type of Inquiry
-                  </label>
-                  <select className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#083c54] focus:border-[#0d7aad]">
-                    <option value="">Select an option</option>
-                    {INQUIRY_TYPES.map((type) => (
-                      <option key={type} value={type}>
-                        {type}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-heading mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    rows={4}
-                    className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#083c54] focus:border-[#083c54]"
-                    placeholder="How can we help you?"
-                  />
-                </div>
-
-                <div>
-                  <button
-                    type="submit"
-                    className="bg-[#083c54] text-white px-8 py-2 rounded-lg hover:bg-[#2b789c] transition-colors w-full"
-                  >
-                    Send Message
-                  </button>
-                </div>
-              </form>
+              <ContactFormPlaceholder inquiryTypes={INQUIRY_TYPES} />
             </div>
           </div>
         </Container>

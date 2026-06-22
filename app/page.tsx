@@ -1,11 +1,33 @@
+import dynamic from "next/dynamic";
 import HeroSection from "@/components/home/HeroSection";
-import ServicesSection from "@/components/home/ServicesSection";
-import WhyUsSection from "@/components/home/WhyUsSection";
-import StatsSection from "@/components/home/StatsSection";
-// import TestimonialsSection from "@/components/home/TestimonialsSection";
-import PartnersSection from "@/components/home/PartnersSection";
-import CTASection from "@/components/home/CTASection";
-import ClientsSection from "@/components/home/clients";
+
+const ServicesSection = dynamic(
+  () => import("@/components/home/ServicesSection"),
+  { loading: () => <SectionPlaceholder /> }
+);
+const WhyUsSection = dynamic(
+  () => import("@/components/home/WhyUsSection"),
+  { loading: () => <SectionPlaceholder /> }
+);
+const StatsSection = dynamic(
+  () => import("@/components/home/StatsSection"),
+  { loading: () => <SectionPlaceholder /> }
+);
+const ClientsSection = dynamic(
+  () => import("@/components/home/clients"),
+  { loading: () => <SectionPlaceholder /> }
+);
+const CTASection = dynamic(() => import("@/components/home/CTASection"), {
+  loading: () => <SectionPlaceholder />,
+});
+const PartnersSection = dynamic(
+  () => import("@/components/home/PartnersSection"),
+  { loading: () => <SectionPlaceholder /> }
+);
+
+function SectionPlaceholder() {
+  return <div className="min-h-[200px] animate-pulse bg-gray-100 rounded-lg" />;
+}
 
 export default function Home() {
   return (
@@ -26,9 +48,6 @@ export default function Home() {
         <StatsSection />
       </section>
 
-      {/* <section className="bg-white py-8">
-        <TestimonialsSection />
-      </section> */}
       <section className="bg-white py-24">
         <ClientsSection />
       </section>

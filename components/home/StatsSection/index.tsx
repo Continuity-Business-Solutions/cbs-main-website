@@ -1,7 +1,5 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
+import FadeInView from "@/components/ui/FadeInView";
 
 const STATS = [
   { number: "200K+", label: "Active Users" },
@@ -16,12 +14,9 @@ export default function StatsSection() {
       <Container>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {STATS.map((stat, index) => (
-            <motion.div
+            <FadeInView
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
+              delay={index * 0.2}
               className="text-center group"
             >
               <div className="relative">
@@ -33,7 +28,7 @@ export default function StatsSection() {
               <div className="text-white/80 group-hover:text-white transition-colors duration-300">
                 {stat.label}
               </div>
-            </motion.div>
+            </FadeInView>
           ))}
         </div>
       </Container>

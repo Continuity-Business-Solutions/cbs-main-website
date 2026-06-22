@@ -2,23 +2,29 @@
 
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
-import TeamMember from "./TeamMember";
+import TeamMember from "@/components/management/TeamMember";
 
 const TEAM_MEMBERS = [
   {
-    name: "Mohammed Al-Balushi",
-    role: "CEO",
+    firstName: "Mohammed",
+    lastName: "Al-Balushi",
+    position: "CEO",
     image: "/assets/team/member1.jpg",
+    description: "Leading CBS with a vision for business transformation across Oman.",
   },
   {
-    name: "Fatima Al-Harthy",
-    role: "Head of Technology",
+    firstName: "Fatima",
+    lastName: "Al-Harthy",
+    position: "Head of Technology",
     image: "/assets/team/member2.jpg",
+    description: "Driving technology innovation and digital transformation initiatives.",
   },
   {
-    name: "Ahmed Al-Siyabi",
-    role: "Head of Training",
+    firstName: "Ahmed",
+    lastName: "Al-Siyabi",
+    position: "Head of Training",
     image: "/assets/team/member3.jpg",
+    description: "Overseeing learning and development programs for corporate clients.",
   },
 ];
 
@@ -46,15 +52,11 @@ export default function Team() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {TEAM_MEMBERS.map((member, index) => (
-            <TeamMember
-              key={member.name}
-              {...member}
-              delay={index * 0.2}
-            />
+          {TEAM_MEMBERS.map((member) => (
+            <TeamMember key={member.firstName} {...member} />
           ))}
         </div>
       </Container>
     </section>
   );
-} 
+}

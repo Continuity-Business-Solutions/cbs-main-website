@@ -1,17 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-
 export default function HeroSection() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
   return (
     <section className="relative min-h-[700px] bg-gradient-to-br from-slate-50 to-slate-100 overflow-hidden">
       {/* Background polygons */}
@@ -90,18 +83,17 @@ export default function HeroSection() {
             <motion.div
               className="absolute w-full h-full flex items-center justify-center"
               initial={{ opacity: 0, scale: 0.8 }}
-              animate={{
-                opacity: isVisible ? 1 : 0,
-                scale: isVisible ? 1 : 0.8,
-              }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
               <div className="relative w-[90%] h-[90%] bg-gradient-to-br from-[#e3a1b6] to-[#8c1c4e] rounded-lg shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300">
-                {/* Image masked by polygon */}
-                <img
+                <Image
                   src="/images/Untitled-1.png"
-                  alt="Hero"
-                  className="absolute inset-0 w-full h-full object-cover clip-polygon-hero"
+                  alt="Business transformation hero"
+                  fill
+                  priority
+                  className="object-cover clip-polygon-hero"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
 
                 {/* Visual enhancements */}

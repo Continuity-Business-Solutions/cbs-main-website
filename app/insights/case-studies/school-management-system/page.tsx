@@ -9,7 +9,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Container from "@/components/ui/Container";
 import Breadcrumb from "@/components/ui/Breadcrumb";
-  import { useRouter } from "next/navigation";
 export const metadata: Metadata = {
   title: "School Management System Case Study | CBS",
   description:

@@ -11,14 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MENU_ITEMS, type SubItem } from "./MegaMenu";
-
-const getItemUrl = (baseHref: string, item: SubItem): string => {
-  if (typeof item === "string") {
-    return `${baseHref}/${item.toLowerCase().replace(/\s+/g, "-")}`;
-  }
-  return item.href;
-};
+import { MENU_ITEMS, getItemUrl, type SubItem } from "@/data/menu-items";
 
 const getItemLabel = (item: any) => {
   if (typeof item === "string") {

@@ -12,8 +12,8 @@ export default function TopBar() {
           <IconLink href="tel:+968-78788268" icon={faPhone}>
             +968-78788268
           </IconLink>
-          <IconLink href="mailto:enquiry@continuityoman.com" icon={faEnvelope}>
-          info@continuityoman.com
+          <IconLink href="mailto:info@continuityoman.com" icon={faEnvelope}>
+            info@continuityoman.com
           </IconLink>
         </div>
       </Container>

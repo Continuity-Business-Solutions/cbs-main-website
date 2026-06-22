@@ -11,21 +11,28 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "18"
+          cache: "npm"
 
       - name: Install Dependencies
         run: npm ci
 
+      - name: Lint
+        run: npm run lint
+
+      - name: Type Check
+        run: npm run typecheck
+
       - name: Build Static Site
-        run: npm run build # must use `next export` under the hood to generate `out/`
+        run: npm run build
 
       - name: Upload Static Files to Lightsail
-        uses: appleboy/scp-action@v0.1.3
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.LIGHTSAIL_HOST }}
           username: ${{ secrets.LIGHTSAIL_USER }}
@@ -34,7 +41,7 @@ jobs:
           target: "~/deploy-temp"
 
       - name: Deploy Static Files on Lightsail
-        uses: appleboy/ssh-action@v0.1.6
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.LIGHTSAIL_HOST }}
           username: ${{ secrets.LIGHTSAIL_USER }}

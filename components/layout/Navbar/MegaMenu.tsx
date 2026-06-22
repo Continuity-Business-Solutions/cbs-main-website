@@ -8,228 +8,21 @@ import {
   faChevronDown,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import {
+  MENU_ITEMS,
+  getItemLabel,
+  getItemUrl,
+  type SubItem,
+} from "@/data/menu-items";
 
-export type SubItem =
-  | string
-  | {
-      name: string;
-      href: string;
-      description: string;
-      category?: string;
-    };
+export type { SubItem } from "@/data/menu-items";
+export { MENU_ITEMS } from "@/data/menu-items";
 
-type MenuItem = {
-  title: string;
-  width?: string;
-  href?: string;
-  items?: Array<{
-    title?: string;
-    name?: string;
-    href: string;
-    subItems: SubItem[] | { [category: string]: SubItem[] };
-  }>;
-};
-
-type MenuItems = {
-  [key: string]: MenuItem;
-};
-
-export const MENU_ITEMS: MenuItems = {
-  home: {
-    title: "Home",
-    href: "/",
-  },
-  products: {
-    title: "Products & Services",
-    width: "lg:w-[800px]",
-    items: [
-      {
-        title: "Enterprise Transformation",
-        href: "/services/enterprise-transformation",
-        subItems: [
-          {
-            name: "Customer Loyalty & Rewards Management",
-            href: "/services/enterprise-transformation/customer-loyalty-rewards-management",
-            description:
-              "Connect businesses with customers through seamless loyalty and rewards solutions",
-          },
-          {
-            name: "AI-Driven Credit Lifecycle Automation",
-            href: "/services/enterprise-transformation/credit-lifecycle-automation",
-            description:
-              "Transform credit risk evaluation with AI-powered modeling and decisioning",
-          },
-          {
-            name: "AI-Based Credit Scoring & Modeling",
-            href: "/services/enterprise-transformation/credit-scoring-modeling",
-            description:
-              "Make precise lending decisions with AI-powered credit assessment",
-          },
-          {
-            name: "E-commerce & Marketplace",
-            href: "/services/enterprise-transformation/ecommerce-marketplace",
-            description:
-              "Create exceptional digital commerce experiences with AI-powered solutions",
-          },
-          {
-            name: "Counseling Management System",
-            href: "/services/enterprise-transformation/counseling-management",
-            description:
-              "Transform educational counseling with intelligent session management",
-          },
-          {
-            name: "Branding & Marketing",
-            href: "/services/enterprise-transformation/branding-marketing",
-            description:
-              "Transform your brand with data-driven marketing solutions",
-          },
-        ],
-      },
-      {
-        title: "Strategy & Consulting",
-        href: "/services/strategy-consulting",
-        subItems: [
-          {
-            name: "Strategy Formulation & Implementation",
-            href: "/services/strategy-consulting",
-            description:
-              "Create and execute clear, actionable strategies aligned with your vision",
-          },
-          {
-            name: "Process Re-Engineering & Automation",
-            href: "/services/strategy-consulting",
-            description:
-              "Optimize workflows and automate processes for maximum efficiency",
-          },
-          {
-            name: "Business Performance & Growth",
-            href: "/services/strategy-consulting",
-            description:
-              "Drive measurable improvements and accelerate business growth",
-          },
-          {
-            name: "Data Analytics",
-            href: "/services/strategy-consulting",
-            description:
-              "Transform data into actionable insights for better decision-making",
-          },
-          {
-            name: "Business Advisory",
-            href: "/services/strategy-consulting",
-            description:
-              "Expert guidance for navigating complex business challenges",
-          },
-        ],
-      },
-      {
-        title: "Learning & Development",
-        href: "/services/learning-development",
-        subItems: {
-          "For Corporates": [
-            {
-              name: "Sales, Customer Service & Experience",
-              href: "/services/learning-development/corporates",
-              description:
-                "Enhance your team's capabilities in sales techniques, customer service delivery, and experience management",
-              category: "For Corporates",
-            },
-            {
-              name: "HR & Communication",
-              href: "/services/learning-development/corporates",
-              description:
-                "Develop effective HR practices and communication strategies for organizational success",
-              category: "For Corporates",
-            },
-            {
-              name: "Team Building",
-              href: "/services/learning-development/corporates",
-              description:
-                "Foster collaboration and strengthen team dynamics through specialized team building programs",
-              category: "For Corporates",
-            },
-            {
-              name: "Strategy Formulation",
-              href: "/services/learning-development/corporates",
-              description:
-                "Learn to develop and implement effective business strategies for sustainable growth",
-              category: "For Corporates",
-            },
-            {
-              name: "Lean, Six Sigma Training & Certification",
-              href: "/services/learning-development/corporates",
-              description:
-                "Master process improvement methodologies with professional Lean Six Sigma certification programs",
-              category: "For Institutions",
-            },
-            {
-              name: "Faculty Development Programs",
-              href: "/services/learning-development/corporates",
-              description:
-                "Enhance teaching effectiveness and academic leadership skills for educational professionals",
-              category: "For Institutions",
-            },
-            {
-              name: "Employability Skills",
-              href: "/services/learning-development/corporates",
-              description:
-                "Develop essential workplace skills to improve career prospects and professional growth",
-              category: "For Institutions",
-            },
-          ],
-          "For Institutions": [
-            {
-              name: "Lean, Six Sigma Training & Certification",
-              href: "/services/learning-development",
-              description:
-                "Master process improvement methodologies with professional Lean Six Sigma certification programs",
-            },
-            {
-              name: "Faculty Development Programs",
-              href: "/services/learning-development",
-              description:
-                "Enhance teaching effectiveness and academic leadership skills for educational professionals",
-            },
-            {
-              name: "Employability Skills",
-              href: "/services/learning-development",
-              description:
-                "Develop essential workplace skills to improve career prospects and professional growth",
-            },
-          ],
-        },
-      },
-    ],
-  },
-  industries: {
-    title: "Industries",
-    href: "/industries",
-  },
-  insights: {
-    title: "Insights",
-    href: "/insights",
-  },
-  management: {
-    title: "Management Team",
-    href: "/management-team",
-  },
-  contact: {
-    title: "Contact us",
-    href: "/contact",
-  },
-};
-
-const getItemUrl = (baseHref: string, item: SubItem): string => {
-  if (typeof item === "string") {
-    return `${baseHref}/${item.toLowerCase().replace(/\s+/g, "-")}`;
-  }
-  return item.href;
-};
-
-const getItemLabel = (item: SubItem): string => {
-  if (typeof item === "string") {
-    return item;
-  }
-  return item.name;
+type MenuSubItem = {
+  title?: string;
+  name?: string;
+  href: string;
+  subItems: SubItem[] | { [category: string]: SubItem[] };
 };
 
 export default function MegaMenu() {
@@ -242,7 +35,7 @@ export default function MegaMenu() {
         <div
           key={key}
           className="relative"
-          onMouseEnter={() => (menu as any).items && setActiveMenu(key)}
+          onMouseEnter={() => menu.items && setActiveMenu(key)}
           onMouseLeave={() => {
             setActiveMenu(null);
             setActiveSubMenu(null);
@@ -270,7 +63,7 @@ export default function MegaMenu() {
             </button>
           )}
 
-          {(menu as any).items && (
+          {menu.items && (
             <AnimatePresence>
               {activeMenu === key && (
                 <>
@@ -294,55 +87,41 @@ export default function MegaMenu() {
                   >
                     <div className="px-8">
                       <div className="flex">
-                        {/* Main Menu Column */}
                         <div className="w-64 border-r border-gray-100">
-                          {(menu as any).items?.map(
-                            (item: {
-                              title?: string;
-                              name?: string;
-                              href: string;
-                              subItems: any;
-                            }) => (
-                              <div
-                                key={item.title || item.name}
-                                onMouseEnter={() =>
-                                  setActiveSubMenu(
-                                    (item.title || item.name) ?? null
-                                  )
-                                }
-                                className={`group px-4 py-3 cursor-pointer rounded-lg transition-colors ${
-                                  activeSubMenu === (item.title || item.name)
-                                    ? "bg-primary/5 text-primary"
-                                    : "hover:bg-gray-50"
-                                }`}
-                              >
-                                <div className="flex items-center justify-between">
-                                  <span className="font-medium">
-                                    {item.title || item.name}
-                                  </span>
-                                  {item.subItems && (
-                                    <FontAwesomeIcon
-                                      icon={faChevronRight}
-                                      className="text-xs opacity-50"
-                                    />
-                                  )}
-                                </div>
+                          {menu.items.map((item: MenuSubItem) => (
+                            <div
+                              key={item.title || item.name}
+                              onMouseEnter={() =>
+                                setActiveSubMenu(
+                                  (item.title || item.name) ?? null
+                                )
+                              }
+                              className={`group px-4 py-3 cursor-pointer rounded-lg transition-colors ${
+                                activeSubMenu === (item.title || item.name)
+                                  ? "bg-primary/5 text-primary"
+                                  : "hover:bg-gray-50"
+                              }`}
+                            >
+                              <div className="flex items-center justify-between">
+                                <span className="font-medium">
+                                  {item.title || item.name}
+                                </span>
+                                {item.subItems && (
+                                  <FontAwesomeIcon
+                                    icon={faChevronRight}
+                                    className="text-xs opacity-50"
+                                  />
+                                )}
                               </div>
-                            )
-                          )}
+                            </div>
+                          ))}
                         </div>
 
-                        {/* Sub Menu Column */}
                         <div className="flex-1 pl-8">
                           <AnimatePresence mode="wait">
                             {activeSubMenu &&
-                              (menu as any).items?.find(
-                                (item: {
-                                  title?: string;
-                                  name?: string;
-                                  href: string;
-                                  subItems: any;
-                                }) =>
+                              menu.items.find(
+                                (item: MenuSubItem) =>
                                   (item.title || item.name) === activeSubMenu
                               )?.subItems && (
                                 <motion.div
@@ -353,13 +132,8 @@ export default function MegaMenu() {
                                   className="py-3"
                                 >
                                   {(() => {
-                                    const activeItem = (menu as any).items.find(
-                                      (item: {
-                                        title?: string;
-                                        name?: string;
-                                        href: string;
-                                        subItems: any;
-                                      }) =>
+                                    const activeItem = menu.items?.find(
+                                      (item: MenuSubItem) =>
                                         (item.title || item.name) ===
                                         activeSubMenu
                                     );
@@ -380,28 +154,26 @@ export default function MegaMenu() {
                                             {category}
                                           </h3>
                                           <div className="space-y-2">
-                                            {(items as SubItem[]).map(
-                                              (subItem) => (
-                                                <Link
-                                                  key={
-                                                    typeof subItem === "string"
-                                                      ? subItem
-                                                      : subItem.href
-                                                  }
-                                                  href={getItemUrl(
-                                                    activeItem.href,
-                                                    subItem
-                                                  )}
-                                                  className="block text-sm text-muted hover:text-primary transition-colors"
-                                                  onClick={() => {
-                                                    setActiveMenu(null);
-                                                    setActiveSubMenu(null);
-                                                  }}
-                                                >
-                                                  • {getItemLabel(subItem)}
-                                                </Link>
-                                              )
-                                            )}
+                                            {items.map((subItem) => (
+                                              <Link
+                                                key={
+                                                  typeof subItem === "string"
+                                                    ? subItem
+                                                    : subItem.href
+                                                }
+                                                href={getItemUrl(
+                                                  activeItem.href,
+                                                  subItem
+                                                )}
+                                                className="block text-sm text-muted hover:text-primary transition-colors"
+                                                onClick={() => {
+                                                  setActiveMenu(null);
+                                                  setActiveSubMenu(null);
+                                                }}
+                                              >
+                                                • {getItemLabel(subItem)}
+                                              </Link>
+                                            ))}
                                           </div>
                                         </div>
                                       ));

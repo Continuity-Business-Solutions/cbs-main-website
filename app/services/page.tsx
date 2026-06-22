@@ -8,7 +8,8 @@ import {
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import Container from "@/components/ui/Container";
-import Breadcrumb from "@/components/ui/Breadcrumb";
+import PageHero from "@/components/ui/PageHero";
+import SectionCTA from "@/components/ui/SectionCTA";
 
 export const metadata: Metadata = {
   title: "Products & Services | CBS",
@@ -61,31 +62,15 @@ const SERVICES = [
 export default function ServicesPage() {
   return (
     <main>
-      {/* Hero Section */}
-      <section className="relative py-20 bg-primary text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/pattern-grid.svg')] opacity-10" />
-        <Container className="relative z-10">
-          <Breadcrumb
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Products & Services" },
-            ]}
-          />
+      <PageHero
+        breadcrumbItems={[
+          { label: "Home", href: "/" },
+          { label: "Products & Services" },
+        ]}
+        title="Products & Services"
+        description="Comprehensive business transformation solutions helping organizations achieve continuous improvements through technology and innovation."
+      />
 
-          <div className="mt-8 max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Products & Services
-            </h1>
-            <p className="text-xl text-white/80">
-              Comprehensive business transformation solutions helping
-              organizations achieve continuous improvements through technology
-              and innovation.
-            </p>
-          </div>
-        </Container>
-      </section>
-
-      {/* Services Grid */}
       <section className="py-20">
         <Container>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -126,26 +111,11 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-primary text-white">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6 text-white">
-              Ready to Transform Your Business?
-            </h2>
-            <p className="text-white/80 mb-8">
-              Contact us to discuss how our solutions can help achieve your
-              business objectives.
-            </p>
-            <Link
-              href="/contact"
-              className="bg-white text-primary px-8 py-3 rounded-lg hover:bg-white/90 transition-colors inline-block"
-            >
-              Get Started
-            </Link>
-          </div>
-        </Container>
-      </section>
+      <SectionCTA
+        title="Ready to Transform Your Business?"
+        description="Contact us to discuss how our solutions can help achieve your business objectives."
+        buttonText="Get Started"
+      />
     </main>
   );
 }
